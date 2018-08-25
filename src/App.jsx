@@ -1,10 +1,22 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'fuck you',
+    };
+  }
+
   render() {
+    const { name } = this.state;
     return (
       <div>
-        <h1>This is my app.</h1>
+        <h1>
+          This is my app
+          {name}
+.
+        </h1>
       </div>
     );
   }

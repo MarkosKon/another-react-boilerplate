@@ -5,8 +5,13 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "./node_modules/.bin/eslint src/*",
+    "lint-fix": "./node_modules/.bin/eslint --fix src/*"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "author": "Markos Konstantopoulos",
   "license": "MIT",
   "devDependencies": {
@@ -15,7 +20,13 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
+    "pre-commit": "^1.2.2",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"

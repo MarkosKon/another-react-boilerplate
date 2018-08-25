@@ -3,7 +3,7 @@ const webpack = require("webpack"); //to access built-in plugins
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.jsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
@@ -14,6 +14,9 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
+        resolve: {
+          extensions: [".js", ".jsx"]
+        },
         use: {
           loader: "babel-loader",
           options: {
