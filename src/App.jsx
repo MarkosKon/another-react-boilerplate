@@ -13,9 +13,8 @@ class App extends Component {
     return (
       <div>
         <h1>
-          This is my app
+          A message follows:
           {name}
-.
         </h1>
       </div>
     );

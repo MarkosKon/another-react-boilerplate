@@ -6,8 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack",
-    "lint": "./node_modules/.bin/eslint src/*",
-    "lint-fix": "./node_modules/.bin/eslint --fix src/*"
+    "test": "jest",
+    "lint": "./node_modules/.bin/eslint src/**/*",
+    "lint-fix": "./node_modules/.bin/eslint --fix src/**/*"
   },
   "pre-commit": [
     "lint"
@@ -16,7 +17,9 @@
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
@@ -26,12 +29,15 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.5.0",
     "pre-commit": "^1.2.2",
+    "react-test-renderer": "^16.4.2",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   }

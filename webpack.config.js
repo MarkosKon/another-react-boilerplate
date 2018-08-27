@@ -1,34 +1,32 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack"); //to access built-in plugins
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); // to access built-in plugins
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
-  mode: "production",
+  mode: 'production',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
         resolve: {
-          extensions: [".js", ".jsx"]
+          extensions: ['.js', '.jsx'],
         },
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["env", "react"]
-          }
-        }
+            presets: ['env', 'react'],
+            plugins: [require('babel-plugin-transform-object-rest-spread')],
+          },
+        },
       },
-      { test: /\.css$/, use: "css-loader", exclude: /(node_modules)/ }
-    ]
+      { test: /\.css$/, use: 'css-loader', exclude: /(node_modules)/ },
+    ],
   },
-  plugins: [
-    new webpack.ProgressPlugin(),
-    new HtmlWebpackPlugin({ template: "./src/index.html" })
-  ]
+  plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({ template: './src/index.html' })],
 };
