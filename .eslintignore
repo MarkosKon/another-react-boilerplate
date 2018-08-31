@@ -1,3 +1,4 @@
 src/index.html
 webpack.config.js
 *.test.jsx
+*.csv
