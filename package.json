@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "another-react-boilerplate",
   "version": "1.0.0",
-  "description": "Netninja tutorial on React - Redux",
+  "description": "A boilerplate for React.",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
