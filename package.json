@@ -7,11 +7,13 @@
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack",
     "test": "jest",
+    "test-w": "jest --watch",
     "lint": "./node_modules/.bin/eslint src/**/*",
     "lint-fix": "./node_modules/.bin/eslint --fix src/**/*"
   },
   "pre-commit": [
-    "lint"
+    "lint",
+    "test"
   ],
   "author": "Markos Konstantopoulos",
   "license": "MIT",
