@@ -1,6 +1,6 @@
 {
-    "name": "React-Boilerplate",
-    "short_name": "React-Boilerplate",
+    "name": "Another React boilerplate",
+    "short_name": "ARB",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
