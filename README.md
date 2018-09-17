@@ -4,7 +4,8 @@
 ```
 git clone https://github.com/MarkosKon/another-react-boilerplate.git 
 cd another-react-boilerplate
-rm -rf .git
+rm -rf .git (remove .git folder)
+touch .env (create a .env file)
 npm i && npm start
 ```
 ## Features
