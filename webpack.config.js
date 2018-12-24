@@ -20,7 +20,7 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    filename: '[name].[hash].js',
     chunkFilename: '[name].[contenthash].js',
   },
   mode: 'production',
