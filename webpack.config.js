@@ -24,6 +24,7 @@ module.exports = {
     chunkFilename: '[name].[contenthash].js',
   },
   mode: 'production',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -43,14 +44,15 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new webpack.ProgressPlugin(),
+    // new webpack.ProgressPlugin(),
     new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new CopyWebpackPlugin([{ from: 'public' }]),
-    new WorkboxPlugin.GenerateSW(),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: '../analyze/report.html',
+      openAnalyzer: false,
     }),
+    new WorkboxPlugin.GenerateSW(),
   ],
 };
