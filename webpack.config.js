@@ -5,9 +5,9 @@ const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
 const path = require('path');
 
-// call dotenv and it will return an Object with a parsed key 
+// call dotenv and it will return an Object with a parsed key
 const env = dotenv.config().parsed;
-  
+
 // reduce it to a nice object, the same as before
 const envKeys = Object.keys(env).reduce((prev, next) => {
   prev[`process.env.${next}`] = JSON.stringify(env[next]);
@@ -26,29 +26,15 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /(node_modules)/,
+        use: 'babel-loader',
         resolve: {
           extensions: ['.js', '.jsx'],
-        },
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env', 'react'],
-            plugins: [
-              require('babel-plugin-transform-object-rest-spread'),
-              require('babel-plugin-transform-class-properties'),
-            ],
-          },
         },
       },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {},
-          },
-        ],
+        use: [{ loader: 'file-loader' }],
       },
     ],
   },
