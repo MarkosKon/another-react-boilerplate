@@ -1,9 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import Loadable from 'react-loadable';
+
+import Loading from './components/Loading';
 import Layout from './layouts/Layout';
-import Home from './pages/Home';
-import NotFound from './pages/NotFound';
+
+const LoadableHome = Loadable({
+  loader: () => import('./pages/Home'),
+  loading: Loading,
+});
+const LoadableNotFound = Loadable({
+  loader: () => import('./pages/NotFound'),
+  loading: Loading,
+});
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,7 +31,7 @@ const App = () => (
           path="/"
           render={() => (
             <Layout key="/" title="Homepage" metaDescription="This is our homepage.">
-              <Home />
+              <LoadableHome />
             </Layout>
           )}
         />
@@ -32,7 +42,7 @@ const App = () => (
               title="Page not found"
               metaDescription="The page was not found."
             >
-              <NotFound />
+              <LoadableNotFound />
             </Layout>
           )}
         />
