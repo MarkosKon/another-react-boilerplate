@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
 const path = require('path');
@@ -44,5 +45,9 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new CopyWebpackPlugin([{ from: 'public' }]),
     new WorkboxPlugin.GenerateSW(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      reportFilename: '../analyze/report.html',
+    }),
   ],
 };
