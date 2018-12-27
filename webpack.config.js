@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
 const path = require('path');
@@ -53,6 +54,7 @@ module.exports = {
       reportFilename: '../analyze/report.html',
       openAnalyzer: false,
     }),
+    new DuplicatePackageCheckerPlugin({ verbose: true }),
     new WorkboxPlugin.GenerateSW(),
   ],
 };
