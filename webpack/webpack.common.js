@@ -1,9 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
 const path = require('path');
@@ -20,12 +17,11 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[name].[contenthash].js',
+    globalObject: 'this',
   },
-  mode: 'production',
-  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -44,17 +40,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
-    // new webpack.ProgressPlugin(),
+    new CleanWebpackPlugin(['../dist'], { allowExternal: true }),
     new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new CopyWebpackPlugin([{ from: 'public' }]),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      reportFilename: '../analyze/report.html',
-      openAnalyzer: false,
-    }),
-    new DuplicatePackageCheckerPlugin({ verbose: true }),
-    new WorkboxPlugin.GenerateSW(),
   ],
 };
