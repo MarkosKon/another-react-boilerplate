@@ -1,5 +1,4 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack'); // to access built-in plugins
 const dotenv = require('dotenv');
@@ -20,7 +19,8 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[name].[contenthash].js',
-    globalObject: 'this',
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -42,7 +42,6 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['../dist'], { allowExternal: true }),
     new webpack.DefinePlugin(envKeys),
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
     new CopyWebpackPlugin([{ from: 'public' }]),
   ],
 };

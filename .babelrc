@@ -9,6 +9,8 @@
     "@babel/react"
   ],
   "plugins": [
+    "babel-plugin-styled-components",
+    "react-loadable/babel",
     "@babel/proposal-object-rest-spread",
     "@babel/proposal-class-properties",
     "@babel/syntax-dynamic-import"
