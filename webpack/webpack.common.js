@@ -14,13 +14,13 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/client.jsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[name].[contenthash].js',
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
-    libraryTarget: 'umd',
+    // libraryTarget: 'umd',
   },
   module: {
     rules: [

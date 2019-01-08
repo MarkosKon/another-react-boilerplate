@@ -3,7 +3,10 @@
     [
       "@babel/env",
       {
-        "useBuiltIns": "entry"
+        "useBuiltIns": "entry",
+        "targets": {
+          "node": 8
+        }
       }
     ],
     "@babel/react"

@@ -4,17 +4,19 @@ const { ReactLoadablePlugin  } = require('react-loadable/webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 const common = require('./webpack.common.js');
 
+const path = require('path');
 const paths = ['/', '/about/', '/contact/'];
 
 console.log('We in production!');
-module.exports = merge(common, {
+
+const clientConfig = merge(common, {
   mode: 'production',
   devtool: 'source-map',
-  target: 'node',
   plugins: [
-    new StaticSiteGeneratorPlugin({ paths: paths }),
+    // new StaticSiteGeneratorPlugin({ paths: paths }),
     new ReactLoadablePlugin({
       filename: './dist/react-loadable.json',
     }),
@@ -38,3 +40,39 @@ module.exports = merge(common, {
     }),
   ],
 });
+
+const serverConfig = {
+  entry: './src/server.jsx',
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    filename: 'server.js',
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+    // libraryTarget: 'umd',
+  },
+  mode: 'production',
+  devtool: 'source-map',
+  target: 'node',
+  externals: [nodeExternals()],
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules)/,
+        use: 'babel-loader',
+        resolve: {
+          extensions: ['.js', '.jsx'],
+        },
+      },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{ loader: 'file-loader' }],
+      },
+    ],
+  },
+  plugins: [
+    new DuplicatePackageCheckerPlugin({ verbose: true }),
+  ]
+}
+
+module.exports = [clientConfig, serverConfig]
