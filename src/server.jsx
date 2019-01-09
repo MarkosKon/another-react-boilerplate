@@ -20,7 +20,7 @@ app.use(express.static('dist'));
 // app.use('/dist', express.static(path.join(__dirname, 'dist')));
 // app.use(express.static(path.join(__dirname, 'dist')));
 
-const stats = import('../dist/react-loadable.json'); // eslint-disable-line import/no-unresolved
+const stats = require('../dist/react-loadable.json'); // eslint-disable-line import/no-unresolved
 
 app.get('*', (req, res) => {
   const sheet = new ServerStyleSheet();
@@ -36,6 +36,9 @@ app.get('*', (req, res) => {
     ),
   );
   const bundles = getBundles(stats, modules);
+  const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'));
+  console.log('The bundles', bundles);
+  console.log('The modules', modules);
   const helmet = Helmet.renderStatic();
   const styleTags = sheet.getStyleTags();
   res.send(`
@@ -52,8 +55,8 @@ app.get('*', (req, res) => {
         </head>
         <body>
           <div id="root">${html}</div>
-          <script src="http://localhost:4000/dist/main.fb0e3430a33d0fb92929.js"></script>
-          ${bundles.map(bundle => `<script src="/dist/${bundle.file}"></script>`).join('\n')}
+          <script src="/main.js"></script>
+          ${scripts.map(script => `<script src="/${script.file}"></script>`).join('\n')}
         </body>
       </html>
     `);

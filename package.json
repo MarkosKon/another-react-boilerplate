@@ -8,7 +8,9 @@
   "scripts": {
     "start": "webpack-dev-server --hot --config webpack/webpack.dev.js",
     "start:server": "nodemon dist/server.js",
-    "build": "webpack --config webpack/webpack.prod.js",
+    "build": "yarn build:client && yarn build:server",
+    "build:client": "webpack --config webpack/webpack.client.js",
+    "build:server": "webpack --config webpack/webpack.server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint --ext js,jsx src",

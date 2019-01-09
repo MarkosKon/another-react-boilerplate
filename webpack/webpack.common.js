@@ -17,7 +17,8 @@ module.exports = {
   entry: './src/client.jsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].[hash].js',
+    // filename: '[name].[hash].js',
+    filename: '[name].js',
     chunkFilename: '[name].[contenthash].js',
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
     // libraryTarget: 'umd',
