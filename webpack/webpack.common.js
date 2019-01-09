@@ -17,7 +17,7 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].[hash].js',
+    filename: 'main.js',
     chunkFilename: '[name].[contenthash].js',
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
     libraryTarget: 'umd',
