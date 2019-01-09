@@ -7,22 +7,20 @@ import { getBundles } from 'react-loadable/webpack';
 import Helmet from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 
-import Loading from './components/Loading';
-// import App from './App';
-import stats from './dist/react-loadable.json';
+import App from './App';
+// import stats from '../react-loadable.json';
 
-const path = require('path');
-// const stats = require('./react-loadable.json');
-
-const LoadableApp = Loadable({
-  loader: () => import('./App'),
-  loading: Loading,
-  webpack: () => [require.resolveWeak('./App')],
-});
+// const path = require('path');
 
 const app = express();
 
-const port = 3000;
+const port = 4000;
+
+app.use(express.static('dist'));
+// app.use('/dist', express.static(path.join(__dirname, 'dist')));
+// app.use(express.static(path.join(__dirname, 'dist')));
+
+const stats = import('../dist/react-loadable.json'); // eslint-disable-line import/no-unresolved
 
 app.get('*', (req, res) => {
   const sheet = new ServerStyleSheet();
@@ -32,8 +30,7 @@ app.get('*', (req, res) => {
     sheet.collectStyles(
       <Loadable.Capture report={moduleName => modules.push(moduleName)}>
         <StaticRouter location={req.url} context={context}>
-          {/* <App /> */}
-          <LoadableApp />
+          <App />
         </StaticRouter>
       </Loadable.Capture>,
     ),
@@ -42,6 +39,7 @@ app.get('*', (req, res) => {
   const helmet = Helmet.renderStatic();
   const styleTags = sheet.getStyleTags();
   res.send(`
+    <!DOCTYPE html>
     <html lang="en">
         <head>
           <meta charset="UTF-8" />
@@ -54,18 +52,17 @@ app.get('*', (req, res) => {
         </head>
         <body>
           <div id="root">${html}</div>
+          <script src="http://localhost:4000/dist/main.fb0e3430a33d0fb92929.js"></script>
           ${bundles.map(bundle => `<script src="/dist/${bundle.file}"></script>`).join('\n')}
         </body>
       </html>
     `);
 });
 
-app.use('/dist', express.static(path.join(__dirname, 'dist')));
-
 Loadable.preloadAll()
   .then(() => {
-    app.listen(port, () => console.log(`Listening http://localhost:${port}`));
+    app.listen(port, () => console.log(`Listening http://localhost:${port}`)); // eslint-disable-line no-console
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err); // eslint-disable-line no-console
   });

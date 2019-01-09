@@ -7,26 +7,27 @@ import { BrowserRouter } from 'react-router-dom';
 // import Helmet from 'react-helmet';
 // import { ServerStyleSheet } from 'styled-components';
 import Loadable from 'react-loadable';
+import App from './App';
 // import { getBundles } from 'react-loadable/webpack';
 
-import Loading from './components/Loading';
+// import Loading from './components/Loading';
 // import stats from '../dist/react-loadable.json';
 // import App from './App';
 
 // const stats = require('../dist/react-loadable.json');
 // let stats = {};
 
-const LoadableApp = Loadable({
-  loader: () => import('./App'),
-  loading: Loading,
-  webpack: () => [require.resolveWeak('./App')],
-});
+// const LoadableApp = Loadable({
+//   loader: () => import('./App'),
+//   loading: Loading,
+//   webpack: () => [require.resolveWeak('./App')],
+// });
 
 // if (typeof document !== 'undefined') {
 Loadable.preloadReady().then(() => {
   hydrate(
     <BrowserRouter>
-      <LoadableApp />
+      <App />
     </BrowserRouter>,
     document.getElementById('root'),
   );

@@ -46,7 +46,7 @@ const serverConfig = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'server.js',
-    globalObject: `(typeof self !== 'undefined' ? self : this)`,
+    // globalObject: `(typeof self !== 'undefined' ? self : this)`,
     // libraryTarget: 'umd',
   },
   mode: 'production',

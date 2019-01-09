@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
 import animations from '../utils/animations';
@@ -28,6 +29,17 @@ const Layout = ({ title, metaDescription, children }) => (
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta name="theme-color" content="#ffffff" />
     </Helmet>
+    <ul>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact</NavLink>
+      </li>
+    </ul>
     <Content>{children}</Content>
   </React.Fragment>
 );
