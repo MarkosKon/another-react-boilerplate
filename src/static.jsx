@@ -7,6 +7,7 @@ import Loadable from 'react-loadable';
 import { getBundles } from 'react-loadable/webpack';
 
 import App from './App';
+// eslint-disable-next-line import/no-unresolved
 import stats from '../dist/react-loadable.json';
 
 export default function render(locals) {
@@ -28,7 +29,8 @@ export default function render(locals) {
   const bundles = getBundles(stats, modules);
   const helmet = Helmet.renderStatic();
   const styleTags = sheet.getStyleTags();
-  return Loadable.preloadAll().then(() => `
+  return Loadable.preloadAll().then(
+    () => `
         <html lang="en">
           <head>
             <meta charset="UTF-8" />
@@ -46,5 +48,6 @@ export default function render(locals) {
             ${js.map(scriptSrc => `<script src="/${scriptSrc}"></script>`)}
           </body>
         </html>
-        `);
+        `,
+  );
 }

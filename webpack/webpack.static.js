@@ -6,11 +6,13 @@ const paths = ['/', '/about/', '/contact/'];
 
 console.log('We in static production!');
 module.exports = {
-  entry: './src/static.jsx',
+  entry: {
+    static: './src/static.jsx',
+  },
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'static.js',
-    // chunkFilename: '[name].[contenthash].js',
+    chunkFilename: 'static#[name].[contenthash].js',
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
     libraryTarget: 'umd',
   },
