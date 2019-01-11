@@ -11,7 +11,7 @@ import Layout from './layouts/Layout';
 // import NotFound from './pages/NotFound';
 
 const LoadableHome = Loadable({
-  loader: () => import('./pages/Home'),
+  loader: () => import(/* webpackChunkName: "home" */ './pages/Home'),
   loading: Loading,
 });
 const LoadableAbout = Loadable({
@@ -23,7 +23,7 @@ const LoadableContact = Loadable({
   loading: Loading,
 });
 const LoadableNotFound = Loadable({
-  loader: () => import('./pages/NotFound'),
+  loader: () => import(/* webpackChunkName: "notfound" */ './pages/NotFound'),
   loading: Loading,
 });
 
