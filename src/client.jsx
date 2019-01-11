@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render, hydrate } from 'react-dom';
 // import { renderToStaticMarkup } from 'react-dom/server';
 // import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
@@ -25,12 +25,22 @@ import App from './App';
 
 // if (typeof document !== 'undefined') {
 Loadable.preloadReady().then(() => {
-  hydrate(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
-    document.getElementById('root'),
-  );
+  const root = document.getElementById('root');
+  if (root.hasChildNodes()) {
+    hydrate(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+      root,
+    );
+  } else {
+    render(
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>,
+      root,
+    );
+  }
 
   // Check that service workers are registered
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
