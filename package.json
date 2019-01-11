@@ -8,6 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --hot --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
+    "build:static": "webpack --config webpack/webpack.prod.js && react-snap",
     "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint --ext js,jsx src",
@@ -28,6 +29,9 @@
     "test",
     "format"
   ],
+  "reactSnap": {
+    "source": "dist"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "prop-types": "^15.6.2",
@@ -65,6 +69,7 @@
     "pre-commit": "^1.2.2",
     "prettier-eslint": "^8.8.2",
     "prettier-eslint-cli": "^4.7.1",
+    "react-snap": "^1.23.0",
     "react-test-renderer": "^16.7.0",
     "regenerator-runtime": "^0.13.1",
     "style-loader": "^0.23.1",

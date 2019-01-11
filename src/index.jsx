@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render, hydrate } from 'react-dom';
 import Loadable from 'react-loadable';
 
 import Loading from './components/Loading';
@@ -10,7 +10,9 @@ const LoadableApp = Loadable({
   loading: Loading,
 });
 
-ReactDOM.render(<LoadableApp />, document.getElementById('app'));
+const root = document.getElementById('app');
+if (root.hasChildNodes()) hydrate(<LoadableApp />, root);
+else render(<LoadableApp />, root);
 
 // Check that service workers are registered
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
