@@ -18,7 +18,7 @@ import App from './App';
 // let stats = {};
 
 // const LoadableApp = Loadable({
-//   loader: () => import('./App'),
+//   loader: () => import(/* webpackChunkName: "app" */ './App'),
 //   loading: Loading,
 //   webpack: () => [require.resolveWeak('./App')],
 // });

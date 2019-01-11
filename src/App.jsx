@@ -15,11 +15,11 @@ const LoadableHome = Loadable({
   loading: Loading,
 });
 const LoadableAbout = Loadable({
-  loader: () => import('./pages/About'),
+  loader: () => import(/* webpackChunkName: "about" */ './pages/About'),
   loading: Loading,
 });
 const LoadableContact = Loadable({
-  loader: () => import('./pages/Contact'),
+  loader: () => import(/* webpackChunkName: "contact" */ './pages/Contact'),
   loading: Loading,
 });
 const LoadableNotFound = Loadable({
