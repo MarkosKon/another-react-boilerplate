@@ -6,7 +6,7 @@ import Loadable from 'react-loadable';
 import Loading from './components/Loading';
 
 const LoadableApp = Loadable({
-  loader: () => import('./App'),
+  loader: () => import(/* webpackChunkName: "app" */ './App'),
   loading: Loading,
 });
 
