@@ -7,11 +7,11 @@ import Loading from './components/Loading';
 import Layout from './layouts/Layout';
 
 const LoadableHome = Loadable({
-  loader: () => import('./pages/Home'),
+  loader: () => import(/* webpackChunkName: "home" */ './pages/Home'),
   loading: Loading,
 });
 const LoadableNotFound = Loadable({
-  loader: () => import('./pages/NotFound'),
+  loader: () => import(/* webpackChunkName: "notfound" */ './pages/NotFound'),
   loading: Loading,
 });
 
