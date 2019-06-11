@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { arrayToString } from '../utils/arrayToString';
+
+const messages = ['Hello', ' ', 'World', ' !!!'];
+
+const result = arrayToString(messages, { flag: false });
+
 export default () => (
   <div>
     <h1>Homepage</h1>
@@ -10,6 +16,7 @@ export default () => (
       expedita impedit reprehenderit ipsum nemo officiis optio similique aspernatur iusto officia
       et? Blanditiis, harum culpa.
     </p>
+    <p>{result}</p>
     <Link to="/nonexistentpage">Non existent page</Link>
   </div>
 );
