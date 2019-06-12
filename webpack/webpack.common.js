@@ -32,6 +32,14 @@ module.exports = {
           extensions: ['.js', '.jsx'],
         },
       },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /(node_modules)/,
+        use: 'awesome-typescript-loader',
+        resolve: {
+          extensions: ['.ts', '.tsx'],
+        },
+      },
       { test: /\.css$/, use: ['style-loader', 'css-loader'] },
       {
         test: /\.(png|jpg|gif)$/,
