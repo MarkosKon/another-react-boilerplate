@@ -2,10 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { arrayToString } from '../utils/arrayToString';
+import { greeter } from '../utils/greeter';
 
 const messages = ['Hello', ' ', 'World', ' !!!'];
+// const messages = ['Hello', ' ', 'World', ' !!!', 5];
 
-const result = arrayToString(messages, { flag: false });
+const result = arrayToString(messages, { flag: true });
+
+const message = greeter('Mark');
+// const message = greeter(5);
 
 export default () => (
   <div>
@@ -17,6 +22,7 @@ export default () => (
       et? Blanditiis, harum culpa.
     </p>
     <p>{result}</p>
+    <p>{message}</p>
     <Link to="/nonexistentpage">Non existent page</Link>
   </div>
 );
